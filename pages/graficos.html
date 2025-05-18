@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos | Trading Consciente</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- TradingView Widget -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-chart-line"></i>
+            <h1>Trading Consciente</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="mercados.html">Mercados</a></li>
+                <li><a class="active" href="graficos.html">Gráficos</a></li>
+                <li><a href="noticias.html">Noticias</a></li>
+                <li><a href="smc.html">SMC</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="charts-container">
+        <h2>Análisis de Gráficos con TradingView</h2>
+        
+        <div class="chart-selector">
+            <label for="symbol">Selecciona un activo:</label>
+            <select id="symbol" onchange="updateChart()">
+                <option value="NASDAQ:AAPL">Apple (AAPL)</option>
+                <option value="NASDAQ:TSLA">Tesla (TSLA)</option>
+                <option value="FX:EURUSD">EUR/USD</option>
+                <option value="FX:GBPUSD">GBP/USD</option>
+                <option value="BINANCE:BTCUSDT">BTC/USDT</option>
+                <option value="BINANCE:ETHUSDT">ETH/USDT</option>
+            </select>
+            
+            <label for="timeframe">Intervalo de tiempo:</label>
+            <select id="timeframe" onchange="updateChart()">
+                <option value="1">1 minuto</option>
+                <option value="5">5 minutos</option>
+                <option value="15">15 minutos</option>
+                <option value="60">1 hora</option>
+                <option value="240">4 horas</option>
+                <option value="1D" selected>Diario</option>
+                <option value="1W">Semanal</option>
+                <option value="1M">Mensual</option>
+            </select>
+        </div>
+        
+        <!-- TradingView Widget -->
+        <div class="tradingview-widget-container">
+            <div id="tradingview-chart"></div>
+            <script type="text/javascript">
+                function updateChart() {
+                    const symbol = document.getElementById('symbol').value;
+                    const timeframe = document.getElementById('timeframe').value;
+                    
+                    new TradingView.widget({
+                        "autosize": true,
+                        "symbol": symbol,
+                        "interval": timeframe,
+                        "timezone": "Etc/UTC",
+                        "theme": "light",
+                        "style": "1",
+                        "locale": "es",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "hide_top_toolbar": false,
+                        "hide_side_toolbar": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview-chart"
+                    });
+                }
+                
+                // Cargar gráfico inicial
+                window.onload = updateChart;
+            </script>
+        </div>
+        
+        <div class="chart-guide">
+            <h3>Guía Básica de Gráficos</h3>
+            <p>Los gráficos son herramientas fundamentales para el análisis técnico. Aquí algunos conceptos básicos:</p>
+            <ul>
+                <li><strong>Velas japonesas:</strong> Muestran apertura, cierre, máximo y mínimo de un período</li>
+                <li><strong>Soportes y resistencias:</strong> Niveles clave donde el precio puede rebotar o romper</li>
+                <li><strong>Tendencia:</strong> Dirección general del mercado (alcista, bajista o lateral)</li>
+                <li><strong>Indicadores:</strong> Herramientas matemáticas para analizar el precio (RSI, MACD, Medias Móviles)</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Trading Consciente. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
